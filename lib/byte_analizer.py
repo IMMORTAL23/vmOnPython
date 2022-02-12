@@ -1,9 +1,12 @@
-import os, time
+import os, time, re
 import memory.works as wk
-Variables = {}
 
-def analize(string="print:Hello world!"):
-    string_cmd = string.split(":")[0].lower()
+
+Variables = {}
+Functions = {}
+VMDatas = {}
+def analize(string="print:Hello world!",str=0):
+    string_cmd = string.split(":",maxsplit=1)[0].lower()
     if string_cmd == "print":
         splitted = string.split(":",maxsplit=1)
         print(splitted[1].replace("%n","\n"))
@@ -63,5 +66,19 @@ def analize(string="print:Hello world!"):
     elif string_cmd == "sleep":
         splitted = string.split(":")
         time.sleep(int(splitted[1]))
-    else:
-        exit("4xx")
+    elif string_cmd == "func":
+        splitted = string.split(":",maxsplit=2)
+        list_cmds = splitted[2]
+        name_function = splitted[1]
+        Functions[name_function] = list_cmds
+    elif string_cmd == "funcstart":
+        splitted = string.split(":")
+        func_devs = Functions[splitted[1]]
+        cmd_list = re.sub(r'[\'\[\]]', '', func_devs).split(',')
+        for i in cmd_list:
+            analize(i)
+    elif string_cmd == "downloadfile":
+        splitted = string.split(":")
+        splitted[1] = "http://"+splitted[1]
+        wk.download_file(splitted[1],splitted[2])
+    elif string_cmd == "ascii":pass
