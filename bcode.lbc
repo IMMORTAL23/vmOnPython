@@ -1,2 +1,2 @@
-func:Test:['print:TEEEEEEEEEEEEEEEEEEEEEEEST','sleep:5','var:test=input','printvar:test','print:work','sleep:3']
+func:Test:['print:TEEEEEEEEEEEEEEEEEEEEEEEST','sleep:5','var:test=tEsTTIING','printvar:test','print:work','sleep:3']
 funcstart:Test
