@@ -1,3 +1,2 @@
-print:3+5
-sleep:5
-print:Var
+func:Test:['print:TEEEEEEEEEEEEEEEEEEEEEEEST','sleep:5','var:test=input','printvar:test','print:work','sleep:3']
+funcstart:Test
